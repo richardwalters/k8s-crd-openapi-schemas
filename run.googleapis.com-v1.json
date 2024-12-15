@@ -25,7 +25,12 @@
           "description": "Communicates the system-controlled state of the Service.",
           "$ref": "#/definitions/ServiceStatus"
         }
-      }
+      },
+      "x-kubernetes-group-version-kind": [{
+        "group": "serving.knative.dev",
+        "kind": "Service",
+        "version": "v1"
+      }]
     },
     "ObjectMeta": {
       "id": "ObjectMeta",
@@ -198,13 +203,17 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Container"
-          }
+          },
+          "x-kubernetes-patch-merge-key": "name",
+          "x-kubernetes-patch-strategy": "merge"
         },
         "volumes": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/Volume"
-          }
+          },
+          "x-kubernetes-patch-merge-key": "name",
+          "x-kubernetes-patch-strategy": "merge"
         },
         "runtimeClassName": {
           "description": "Runtime. Leave unset for default.",
@@ -262,7 +271,9 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/EnvVar"
-          }
+          },
+          "x-kubernetes-patch-merge-key": "name",
+          "x-kubernetes-patch-strategy": "merge"
         },
         "resources": {
           "description": "Compute Resources required by this container.",
@@ -291,7 +302,9 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/VolumeMount"
-          }
+          },
+          "x-kubernetes-patch-merge-key": "name",
+          "x-kubernetes-patch-strategy": "merge"
         },
         "livenessProbe": {
           "description": "Periodic probe of container liveness. Container will be restarted if the probe fails.",
@@ -623,7 +636,9 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/HTTPHeader"
-          }
+          },
+          "x-kubernetes-patch-merge-key": "name",
+          "x-kubernetes-patch-strategy": "merge"
         },
         "port": {
           "description": "Port number to access on the container. Number must be in the range 1 to 65535.",
@@ -735,7 +750,9 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/KeyToPath"
-          }
+          },
+          "x-kubernetes-patch-merge-key": "key",
+          "x-kubernetes-patch-strategy": "merge"
         },
         "defaultMode": {
           "description": "Integer representation of mode bits to use on created files by default. Must be a value between 01 and 0777 (octal). If 0 or not set, it will default to 0444. Directories within the path are not affected by this setting. Notes * Internally, a umask of 0222 will be applied to any non-zero value. * This is an integer representation of the mode bits. So, the octal integer value should look exactly as the chmod numeric notation with a leading zero. Some examples: for chmod 777 (a=rwx), set to 0777 (octal) or 511 (base-10). For chmod 640 (u=rw,g=r), set to 0640 (octal) or 416 (base-10). For chmod 755 (u=rwx,g=rx,o=rx), set to 0755 (octal) or 493 (base-10). * This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
@@ -782,7 +799,9 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/KeyToPath"
-          }
+          },
+          "x-kubernetes-patch-merge-key": "key",
+          "x-kubernetes-patch-strategy": "merge"
         },
         "defaultMode": {
           "description": "(Optional) Integer representation of mode bits to use on created files by default. Must be a value between 01 and 0777 (octal). If 0 or not set, it will default to 0644. Directories within the path are not affected by this setting. Notes * Internally, a umask of 0222 will be applied to any non-zero value. * This is an integer representation of the mode bits. So, the octal integer value should look exactly as the chmod numeric notation with a leading zero. Some examples: for chmod 777 (a=rwx), set to 0777 (octal) or 511 (base-10). For chmod 640 (u=rw,g=r), set to 0640 (octal) or 416 (base-10). For chmod 755 (u=rwx,g=rx,o=rx), set to 0755 (octal) or 493 (base-10). * This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
@@ -995,7 +1014,12 @@
           "readOnly": true,
           "$ref": "#/definitions/JobStatus"
         }
-      }
+      },
+      "x-kubernetes-group-version-kind": [{
+        "group": "run.googleapis.com",
+        "kind": "Job",
+        "version": "v1"
+      }]
     },
     "JobSpec": {
       "id": "JobSpec",
@@ -1073,14 +1097,18 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/Volume"
-          }
+          },
+          "x-kubernetes-patch-merge-key": "name",
+          "x-kubernetes-patch-strategy": "merge"
         },
         "containers": {
           "description": "Optional. List of containers belonging to the task. We disallow a number of fields on this Container.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/Container"
-          }
+          },
+          "x-kubernetes-patch-merge-key": "name",
+          "x-kubernetes-patch-strategy": "merge"
         },
         "maxRetries": {
           "description": "Optional. Number of retries allowed per task, before marking this job failed. Defaults to 3.",
